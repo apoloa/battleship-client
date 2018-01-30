@@ -1,0 +1,19 @@
+.boards {
+  width: 100%;
+}
+
+.boards > div  {
+  display: inline-block;
+}
+
+table, tr, td {
+  border: 1px solid black;
+}
+
+tr {
+  padding: 20px;
+}
+
+td {
+  padding: 20px;
+}
