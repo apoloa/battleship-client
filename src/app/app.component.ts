@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { WebSocketService } from './services/websocket.service';
-import { Board } from './models/board';
+import {Component} from '@angular/core';
+import {WebSocketService} from './services/websocket.service';
+import {Board} from './models/board';
+import {Point} from './models/point';
 
 @Component({
   selector: 'app-root',
@@ -18,20 +19,29 @@ export class AppComponent {
   constructor(private webSocketService: WebSocketService) {
   }
 
-  ngOnInit() {
-    this.webSocketService
-      .getMessage()
-      .subscribe(msg => {
-        this.msg = '1st ' + msg;
-      });
-  }
-
   login(userId: string) {
     this.webSocketService.login(userId);
   }
 
-  increaseValue(i: number, j: number) {
-    console.log(i, j);
-    this.ownerBoard.increaseValue(i, j);
+  increaseValue(i: number, j: number, event: any) {
+    this.ownerBoard.increaseValue(i, j, event);
   }
+
+  applyClass(point: Point): string {
+    switch (point.value) {
+      case 0:
+        return 'none';
+      case 1:
+        return 'first';
+      case 2:
+        return 'second';
+      case 3:
+        return 'third';
+      case 4:
+        return 'fourth';
+      case 5:
+        return 'five';
+    }
+  }
+
 }

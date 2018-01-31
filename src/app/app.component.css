@@ -17,3 +17,29 @@ tr {
 td {
   padding: 20px;
 }
+
+
+.none {
+  background-color: transparent;
+}
+
+.first {
+  background-color: blue;
+}
+
+.second {
+  background-color: green;
+}
+
+.third {
+  background-color: red;
+}
+
+.fourth {
+  background-color: orange;
+}
+
+.five {
+  background-color: yellow;
+}
+
