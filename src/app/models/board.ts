@@ -1,5 +1,5 @@
-import {Point} from './point';
-import {Boat} from './boat';
+import { Point } from './point';
+import { Boat } from './boat';
 
 export class Board {
   public board: Point[][];
@@ -13,10 +13,15 @@ export class Board {
     for (let _i = 0; _i < size; _i++) {
       const line = [];
       for (let _j = 0; _j < size; _j++) {
-        line.push(new Point(0));
+        line.push(new Point(0, _i, _j));
       }
       this.board.push(line);
     }
+  }
+
+  complete(): boolean {
+    console.log(this.boats.length);
+    return this.boats.length === 5;
   }
 
   increaseValue(i: number, j: number, direction: string) {
@@ -83,4 +88,21 @@ export class Board {
       return false;
     }
   }
+
+  toArray(): number[][][] {
+    const board = [];
+    for (let _i = 0; _i < this.size; _i++) {
+      const line = [];
+      for (let _j = 0; _j < this.size; _j++) {
+        line.push(this.board[_i][_j].toArray())
+      }
+      board.push(line);
+    }
+    return board;
+  }
+
+  applyPoint(point: Point) {
+    this.board[point.x][point.y] = point;
+  }
+
 }

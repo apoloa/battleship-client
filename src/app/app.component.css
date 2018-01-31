@@ -43,3 +43,10 @@ td {
   background-color: yellow;
 }
 
+.black {
+  background-color: black;
+}
+
+.borderRed{
+  border-color: red !important;
+}

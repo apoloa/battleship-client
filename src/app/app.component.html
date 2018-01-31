@@ -1,9 +1,20 @@
 <!--The content below is only a placeholder and can be replaced.-->
+
+<div>{{game.status.toString()}}</div>
+
 <div>
   <label>
     <input type="text" #userId name="" value="">
   </label>
   <button (click)="login(userId.value)">Send</button>
+  <br>
+</div>
+
+<div>
+  <label>
+    <input type="text" #opponentId name="" value="">
+  </label>
+  <button (click)="startGame(opponentId.value)">StartGame</button>
   <br>
 </div>
 
@@ -18,9 +29,9 @@
   <div>
     <span>Owner Board</span>
     <table (keypress)="setDirection($event.keyCode)">
-      <tr *ngFor="let rows of ownerBoard.board; let i = index" [attr.data-index]="i">
+      <tr *ngFor="let rows of game.ownerBoard.board; let i = index" [attr.data-index]="i">
         <td *ngFor="let line of rows; let j = index" [attr.data-index]="j" (click)="increaseValue(i,j, dir.value)"  [ngClass]="applyClass(line)">
-          {{line.value}} {{i}} {{j}}
+          {{line.value}}
         </td>
       </tr>
     </table>
@@ -28,11 +39,13 @@
   <div>
     <span>Opponent Board</span>
     <table>
-      <tr *ngFor="let rows of opponentBoard.board; let i = index" [attr.data-index]="i">
-        <td *ngFor="let line of rows; let j = index" [attr.data-index]="j">
-          {{line}}
+      <tr *ngFor="let rows of game.opponentBoard.board; let i = index" [attr.data-index]="i">
+        <td *ngFor="let line of rows; let j = index" [attr.data-index]="j" (click)="selectValue(i,j)" [ngClass]="selected(line)">
+          {{line.value}}
         </td>
       </tr>
     </table>
   </div>
 </div>
+
+<div class=""></div>
