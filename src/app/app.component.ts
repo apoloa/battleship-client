@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.webSocketService.getNewGameEvent().subscribe(id => {
-      debugger;
       this.game.initiateGame(id);
     });
     this.webSocketService.getTurnEvent().subscribe(() => {
@@ -50,13 +49,13 @@ export class AppComponent implements OnInit {
   }
 
   selectValue(x: number, y: number) {
-    if (this.game.status == StatusGame.YourTurn) {
+    if (this.game.status === StatusGame.YourTurn) {
       this.webSocketService.sendSelectedRow(this.game.id, x, y);
     }
   }
 
   increaseValue(i: number, j: number, event: any) {
-    if (this.game.status == StatusGame.SetBoats) {
+    if (this.game.status === StatusGame.SetBoats) {
       this.game.ownerBoard.increaseValue(i, j, event);
       if (this.game.ownerBoard.complete()) {
         this.webSocketService.sendBoards(this.game);
